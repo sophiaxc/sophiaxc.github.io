@@ -1,4 +1,14 @@
 body {
   font-family: 'Inconsolata', monospace;
-  background: lavenderblush;
+  background: lemonchiffon;
+  color: darkslategray;
 }
+
+a {
+  color: indigo;
+  background-color: mistyrose;
+}
+
+a>div { display: none; }
+a:hover>div { display: block; 
+max-width: 335px; max-height: 503px;}
