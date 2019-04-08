@@ -34,6 +34,7 @@ body {
     padding: 0px;
   }
 
+/* Panel 1 - Letter I - @borph */
 .panel_1_tri_1 {
   animation: panel_1_tri_1_ani 6s  cubic-bezier(0.32, 0.01, 0, 0.99) 4s infinite alternate;
   left: 0px;
@@ -254,6 +255,7 @@ body {
   border-color: #afafaf;
 }
 
+/* Panel 2 - HEART - @borph */
 .panel_2_tri_1 {
   animation: panel_2_tri_1_ani 6s  cubic-bezier(0.32, 0.01, 0, 0.99) 4s infinite alternate;
   left: 0px;
@@ -630,6 +632,7 @@ body {
   }
 }
 
+/* Panel 3 - Heart - Sneaky Triangles - @borph */
 .panel_2_tri_9 {
   animation: panel_2_tri_9_ani 6s  cubic-bezier(0.32, 0.01, 0, 0.99) 4s infinite alternate;
   left: 0px;
@@ -677,6 +680,7 @@ body {
   }
 }
 
+/* Panel 3 - Heart - Sneaky Triangles - @borph */
 .panel_2_tri_10 {
   animation: panel_2_tri_10_ani 6s  cubic-bezier(0.32, 0.01, 0, 0.99) 4s infinite alternate;
   left: 0px;
@@ -735,6 +739,8 @@ body {
   border-color: #afafaf;
 }
 
+
+/* Panel 3 - Letter U - @borph */
 .panel_3_tri_1 {
   animation: panel_3_tri_1_ani 6s  cubic-bezier(0.32, 0.01, 0, 0.99) 4s infinite alternate;
   left: 0px;
