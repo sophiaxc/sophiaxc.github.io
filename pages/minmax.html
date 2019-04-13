@@ -1,0 +1,158 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>MinMax</title>
+    <meta name="description" content="MinMax">
+    
+    <!-- JS dependencies -->
+    <script src="../js/libs/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+    <!-- CSS stylesheets -->
+    <link rel="stylesheet" href="../css/minmax.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+    <link rel="stylesheet" href="../css/jquery-ui-slider-pips.css">
+
+  </head>
+
+  <body>
+    <script>
+       $(document).ready(function() {
+         console.log('Starting document setup...');
+         // We have to wait until JQuery is loaded before we can get the jQuery plugin working
+         $.getScript("../js/libs/jquery-ui-slider-pips.js").done(function( script, textStatus ) {
+           console.log('Done loading slider pips');
+           $("#circles-slider")
+             .slider({
+                 max: 5,
+                 value: 0
+             })
+             .slider("pips", {
+                labels: { "first": "MIN", "last": "MAX" }
+            })
+        });
+
+         // When name field is updated, rerender canvas
+          $('#fname').on('input',function(e){
+             updateMyCanvas();
+          });
+
+         // When slider is updated, rerender canvas
+          $('#circles-slider').slider({
+              change: function(event, ui) { 
+                   updateMyCanvas();
+              } 
+          });
+       });
+
+      // -------------------------------------------------------
+      function getRandomColor() {
+        let letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      // -------------------------------------------------------
+      function getRandomCanvasBackgroundColor() {
+        let backgroundColors = [
+          'radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)',
+          'linear-gradient(90deg, rgba(255,252,26,1) 25%, rgba(99,102,30,1) 100%)',
+          'linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)',
+          'linear-gradient(90deg, rgba(253,29,29,1) 24%, rgba(252,176,69,1) 100%)', 
+          'linear-gradient(90deg, rgba(29,253,51,1) 36%, rgba(252,69,69,1) 100%)',
+          'linear-gradient(90deg, rgba(26,242,255,1) 25%, rgba(30,31,32,1) 85%)',
+          'linear-gradient(90deg, rgba(56,26,255,1) 25%, rgba(209,25,190,1) 85%)'
+          ];
+        let listLength = backgroundColors.length - 1;
+        let randomIndex = Math.floor(Math.random() * listLength);
+        return backgroundColors[randomIndex];
+      }
+
+      // -------------------------------------------------------
+      function updateMyCanvas() {
+       let nameVal = $('#fname').val();
+        let sliderVal = $("#circles-slider").slider("option", "value");
+        console.log("CURRENT VAL: " + sliderVal);
+
+        // Set canvas to full minimum
+        if(sliderVal == 0) {
+          console.log("Setting canvas to min style.");
+
+          let nameObj = $("<p>");
+          nameObj.addClass("adventure");
+          nameObj.attr('id', 'name-min');
+          nameObj.html(nameVal);
+
+          $('#my-canvas').empty();
+          $('#my-canvas').append(nameObj);
+
+          $('#my-canvas').css('background', 'white');
+        }
+
+        // Set cavnas to full maximum
+        if(sliderVal > 0) {
+          console.log("Setting canvas to max style.");
+ 
+          let numObj = (sliderVal * 60);
+          $('#my-canvas').empty();
+
+          let canvasColor = getRandomCanvasBackgroundColor();
+          $('#my-canvas').css('background', canvasColor);
+          
+          // Create multiple instances of name, each with unique color/size
+          for(let i = 0; i < numObj; i++) {
+            let nameObj = $("<p>");
+            nameObj.attr('id', 'name-min');
+            nameObj.html(nameVal);
+
+            // Randomly generate attributes
+            let nameColor = getRandomColor();
+            let nameLeft = -3 + (100*Math.random()) + '%';
+            let nameTop = -5 + (100*Math.random()) + '%';
+            let nameSize = 40 + Math.floor(Math.random() * 80);
+            let nameFont = Math.random();
+            let degRotate = Math.floor(360*Math.random());
+            let nameRotate = 'rotate(' + degRotate + 'deg)';
+
+            // Flip a coin and choose a font
+            if(nameFont > 0.5) {
+              nameObj.addClass("besom");
+            } else {
+              nameObj.addClass("kust");
+            }
+
+            nameObj.css("color", getRandomColor());
+            nameObj.css("top", nameTop);
+            nameObj.css("left", nameLeft);
+            nameObj.css("opacity", 0.8);
+            nameObj.css("font-size", nameSize);
+            nameObj.css("transform", nameRotate);
+
+            $('#my-canvas').append(nameObj);
+          }
+        }
+      }
+
+      
+    </script>
+    <div class="row">
+      <div class="col-25">
+        <label class="Helvetica" for="fname">Minimalism VS Maximalism</label>
+      </div>
+      <div class="col-75">
+        <input type="text" class="Helvetica" id="fname" name="firstname" placeholder="Type Here">
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="circles-slider"></div>
+    </div>
+    <div id="my-canvas"></div>
+  </body>
+</html>
