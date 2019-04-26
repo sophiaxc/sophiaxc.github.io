@@ -35,11 +35,13 @@ class Walker {
       this.x_vel = -2 + floor(random(4));
       this.y_vel = -2 + floor(random(4));
     }
-    this.color = floor(random(255));
+    this.color_r = floor(random(255));
+    this.color_g = floor(random(255));
+    this.color_b = floor(random(255));
   }
 
   render() {
-    stroke(this.color);
+    stroke(this.color_r, this.color_g, this.color_b);
     point(this.x,this.y);
   }
 
