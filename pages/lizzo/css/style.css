@@ -1,0 +1,42 @@
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 800;
+  src: local("Open Sans ExtraBold"), local("OpenSans-ExtraBold"),
+    url(https://fonts.gstatic.com/s/opensans/v16/mem5YaGs126MiZpBA-UN8rsOUuhs.ttf)
+      format("truetype");
+}
+body {
+  margin: 0;
+}
+#world {
+  background-color: #bdd8fe;
+  background-image: linear-gradient(315deg, #bdd8fe 0%, #e186b4 74%);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#text {
+  position: absolute;
+  bottom: 10vh;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  font-family: Open Sans;
+  text-transform: uppercase;
+  font-size: 5vh;
+}
+
+.emoji_drop {
+  position: absolute;
+  top: -10vh;
+  width: 100%;
+  font-weight: bold;
+  color: white;
+  font-family: Open Sans;
+  text-transform: uppercase;
+  font-size: 10vh;
+  opacity: .5;
+}
